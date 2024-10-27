@@ -5,6 +5,7 @@ export const value = [
         option2: " Mars",
         option3: "Jupiter",
         option4: "Saturn",
+        // option : ["ahgfs", "ggdjgjd", "bdhjkh", "djhdj"],
         ans: 2,  
     },
     {
@@ -13,6 +14,7 @@ export const value = [
         option2: "1912",
         option3: "1920",
         option4: "1935",
+        // option:["324", "5442", "646", "5647"],
         ans: 2,  
     },
     {

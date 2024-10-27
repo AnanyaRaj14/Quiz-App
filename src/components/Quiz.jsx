@@ -7,6 +7,7 @@ const Quiz = () => {
   const [lock, setLock] = useState(false);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(10);
+  const [correct, setCorrect] =  useState(false);
   
 
   useEffect(() => {
@@ -25,25 +26,35 @@ const Quiz = () => {
     return () => clearInterval(timer);
   }, [index]);
 
-
   const checkAns = (e,ans) => {
-      if(lock===false){
-        const correct = question.ans === ans;
-        e.target.className = correct ? 'bg-green-500 p-2 mt-2 border-3 border-green' : 'bg-red-500 p-2 border-3 border-red';
-        setLock(true);
-        if(correct) setScore(score+1);
-      }
-  };
+    if(lock===false){
+      const correct = question.ans === ans;
+      e.target.className = correct ? 'bg-green-500 p-2 mt-2 border-3 border-green' : 'bg-red-500 p-2 border-3 border-red';
+      setLock(true);
+      if(correct) setScore(score+1);
+    }
+};
+ 
+  
 
-  const nextQuestion = () => {
+  const nextQuestion = (e,ans) => {
     if(index < value.length-1){
       setIndex(index+1);
       setQuestion(value[index+1]);
+      if(lock===false){
+        if(setCorrect===false){
+          const clicked = question.ans != ans;
+          console.log(clicked);
+          e.target.className = clicked ? 'bg-transparent p-2 border-3 border-red' : ' ';
+        }
+      }
       setLock(false);
+
     }else{
       alert(`Quiz is finished... Your score is ${score}/${value.length}`);
     }
   };
+
 
   return (
     <>
@@ -57,6 +68,15 @@ const Quiz = () => {
             <li onClick={(e)=>{checkAns(e,2)}} className='h-10 p-2 border-2 border-black w-full gap-3 pl-4 pr-4 mt-4'>{value[index].option2}</li>
             <li onClick={(e)=>{checkAns(e,3)}} className='h-10 p-2 border-2 border-black w-full gap-3 pl-4 pr-4 mt-4'>{value[index].option3}</li>
             <li onClick={(e)=>{checkAns(e,4)}} className='h-10 p-2 border-2 items-center border-black gap-3 pl-4 pr-4 mt-4 w-full'>{value[index].option4}</li>
+            {/* {question.option.map((option, idx) => {
+              <li
+                key={idx}
+                onClick={(e)=> checkAns(e, option)}
+                className='h-10 p-2 border-2 border-black w-full gap-3 pl-4 pr-4 mt-4'
+              >
+                {option}
+              </li>
+            })} */}
         </ul>
         <button 
           className='w-24 p-1 border-2 border-black bg-gray-400 mt-3 mb-3 text-lg font-bold'
