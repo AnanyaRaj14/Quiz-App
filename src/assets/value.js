@@ -1,11 +1,11 @@
 export const value = [
     {
-      question: "Which planet is known as the Red Planet?",
-      option1: "Venus",
-      option2: " Mars",
-      option3: "Jupiter",
-      option4: "Saturn",
-      ans: 2,  
+        question: "Which planet is known as the Red Planet?",
+        option1: "Venus",
+        option2: " Mars",
+        option3: "Jupiter",
+        option4: "Saturn",
+        ans: 2,  
     },
     {
         question: "In which year did the Titanic sink?",
